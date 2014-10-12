@@ -32,6 +32,7 @@ public class AboutController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("section", "about");
 
 		return "about";
 	}

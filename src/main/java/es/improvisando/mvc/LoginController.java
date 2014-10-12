@@ -35,7 +35,6 @@ public class LoginController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
-
 		return "login";
 	}
 
