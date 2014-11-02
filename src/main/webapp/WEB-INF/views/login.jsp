@@ -76,7 +76,19 @@ code {
 					Welcome<small> and enter your credentials...</small>
 				</h1>
 				<p>...and enter the most amazing webpage in the world</p>
-				<form class="form-horizontal" role="form" action="index" method="post">
+				<%-- Warning if login is not correct --%>
+				<c:if test="${authenticationResult == 'FAIL_USER_NOT_EXISTS'}">
+					<div class="alert alert-warning" role="alert">
+						<b>Warning. </b> The username is not valid.
+					</div>
+				</c:if>
+				<c:if test="${authenticationResult == 'FAIL_WRONG_PASSWORD'}">
+					<div class="alert alert-warning" role="alert">
+						<b>Warning. </b> The password is not valid.
+					</div>
+				</c:if>
+				<%-- Login form --%>
+				<form class="form-horizontal" role="form" action="" method="post">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-10">

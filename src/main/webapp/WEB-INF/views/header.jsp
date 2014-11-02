@@ -1,10 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%!public String printClassActive() {
-		return "";
-	}%>
-
-
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <div class="navbar-wrapper">
 	<div class="container">
 
@@ -25,25 +21,24 @@
 							<%-- Section index highlight--%>
 							<c:if test="${section == 'index'}">
 								class="active"
-							</c:if>
-						><a href="index">Home</a></li>
+							</c:if>><a
+							href="index">Home</a></li>
 						<li
 							<%-- Section about highlight--%>
 							<c:if test="${section == 'about'}">
 								class="active"
-							</c:if>
-						><a href="about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+							</c:if>><a
+							href="about">About</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+							data-toggle="dropdown">Stories <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
+								<c:forEach items="${userStories}" var="story">
+									<li><a href="<c:url value="/story?storyid=${story.value.id}"/>"><c:out
+												value="${story.value.name}" /></a></li>
+								</c:forEach>
 								<li class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
+								<li class="dropdown-header">Admin</li>
+								<li><a href="#">Create new story</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -51,5 +46,3 @@
 		</div>
 	</div>
 </div>
-
-<p>Section: ${section}</p>

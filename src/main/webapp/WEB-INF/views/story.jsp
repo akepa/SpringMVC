@@ -30,6 +30,31 @@ body {
 	<!--  Common header in all the webpages -->
 	<jsp:include page="header.jsp" />
 
+	<div class="main_page_item">
+		<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<b> <c:out value="${story.name} " /></b>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<c:forEach items="${story.storyTrunks}" var="trunk">
+					<c:out value="${trunk.text} " />
+				</c:forEach>
+			</div>
+		</div></div>
+		<div class="container">
+			<form name="addText" id="form-1" action="addText">
+				<p>Words: X</p>
+				<textarea class="form-control" rows="3"></textarea>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+
+
+
 </body>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </html>

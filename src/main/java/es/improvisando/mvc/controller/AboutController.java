@@ -1,7 +1,5 @@
-package es.improvisando.mvc;
+package es.improvisando.mvc.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AboutController {
+public class AboutController extends AbstractHeaderController{
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(AboutController.class);
@@ -25,16 +23,14 @@ public class AboutController {
 		if (logger.isInfoEnabled()) {
 			logger.info("LoginController has been reached.");
 		}
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
 
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
+		
+		setHeaderModel(model);
+		// Fill UI model
 		model.addAttribute("section", "about");
+
 
 		return "about";
 	}
-	
+
 }

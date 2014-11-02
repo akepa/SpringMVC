@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	xmlns:util="http://www.springframework.org/schema/util">
 
-	<bean id="indexpojo" class="es.improvisando.mvc.model.IndexPojo">
-		<property name="message" value="Hello World!" />
+	<context:annotation-config />
+
+	<bean id="authenticationManager"
+		class="es.improvisando.mvc.controller.authentication.AuthenticationManager">
+		<property name="userDB">
+			<map>
+				<entry key="kepa.adam@gmail.com" value="pass" />
+			</map>
+		</property>
 	</bean>
 
+
+	<bean id="storyManager" class="es.improvisando.mvc.business.stories.StoryManager"
+		scope="singleton">
+		<property name="myStoryList">
+			<map>
+				<entry key="Story1">
+					<bean class="es.improvisando.mvc.model.story.Story">
+						<property name="id" value="Story1" />
+						<property name="name" value="Story1" />
+						<property name="storyTrunks">
+							<list>
+								<bean id="storyTrunk1" class="es.improvisando.mvc.model.story.StoryTrunk">
+									<property name="text" value="SomeText">
+									</property>
+								</bean>
+							</list>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
 </beans>

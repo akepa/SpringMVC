@@ -1,4 +1,4 @@
-package es.improvisando.mvc;
+package es.improvisando.mvc.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class IndexController {
+public class IndexController extends AbstractHeaderController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(IndexController.class);
@@ -29,9 +29,9 @@ public class IndexController {
 //		model.addAttribute("message", obj.getMessage());
 		
 		logger.info("User: " + email + " , Password: " + password);
+		
+		setHeaderModel(model);
 		model.addAttribute("section", "index");
-		
-		
 		return "index";
 	}
 	
@@ -48,6 +48,7 @@ public class IndexController {
 //		model.addAttribute("message", obj.getMessage());
 		
 		logger.info("Index has been reached without login data");
+		setHeaderModel(model);
 		model.addAttribute("section", "index");	
 		return "index";
 	}
